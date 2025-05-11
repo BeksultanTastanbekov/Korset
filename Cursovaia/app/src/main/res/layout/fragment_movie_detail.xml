@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.details.MovieDetailFragment">
+
+    <!-- AppBarLayout для верхней части с картинкой -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <!-- CollapsingToolbarLayout для эффекта сворачивания -->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout_detail"
+            style="?attr/collapsingToolbarLayoutLargeStyle"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:contentScrim="?attr/colorPrimary"
+            app:statusBarScrim="?attr/colorPrimaryVariant"
+            app:toolbarId="@+id/toolbar_detail">
+
+            <!-- Картинка (Backdrop) -->
+            <ImageView
+                android:id="@+id/iv_movie_backdrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax"
+                tools:src="@tools:sample/backgrounds/scenic"
+                android:contentDescription="@string/movie_backdrop" />
+
+            <!-- Затемнение для лучшей читаемости кнопки Play -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#66000000"/> <!-- Полупрозрачный черный -->
+
+            <!-- Кнопка Play -->
+            <ImageView
+                android:id="@+id/iv_play_trailer"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_play_arrow_24"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="@color/white"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:contentDescription="@string/play_trailer"/>
+
+            <!-- Toolbar (он остается здесь, но будет пустым, заголовок рисует CollapsingToolbarLayout) -->
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_detail"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Основной контент под AppBarLayout -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="16dp"> <!-- Убираем горизонтальный padding, чтобы TabLayout был во всю ширину -->
+
+            <!-- Название фильма -->
+            <TextView
+                android:id="@+id/tv_movie_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                tools:text="Название очень длинного фильма"/>
+
+            <!-- Контейнер для метаданных -->
+            <LinearLayout
+                android:id="@+id/meta_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="16dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Иконка календаря и Год -->
+                <TextView
+                    android:id="@+id/tv_movie_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_calendar_month_24"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    tools:text="2025"/>
+
+                <!-- Иконка часов и Продолжительность -->
+                <TextView
+                    android:id="@+id/tv_movie_runtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:drawableStart="@drawable/ic_baseline_access_time_24"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    tools:text="120 мин."/>
+
+                <!-- Можно добавить иконку рейтинга -->
+                <TextView
+                    android:id="@+id/tv_movie_rating_meta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:drawableStart="@drawable/baseline_star_24"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    tools:text="8.1"/>
+
+            </LinearLayout>
+
+            <!-- Горизонтальный RecyclerView или ChipGroup для Жанров -->
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_genres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="16dp"
+                app:chipSpacingHorizontal="4dp" />
+
+            <!-- ЗАМЕНЯЕМ LinearLayout НА ConstraintLayout -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/actions_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp">
+
+
+                <!-- Кнопка Избранное -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_favorite"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="В избранное"
+                    app:icon="@drawable/ic_baseline_bookmark_border_24"
+                    app:iconGravity="textStart"
+                    app:layout_constraintEnd_toStartOf="@+id/button_add_to_collection"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <!-- Кнопка Добавить в коллекцию -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_add_to_collection"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Коллекция"
+                    app:icon="@drawable/ic_baseline_add_box_24"
+                    app:iconGravity="textStart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/button_favorite"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- КОНЕЦ ЗАМЕНЫ -->
+
+            <!-- ProgressBar для загрузки (если нужен) -->
+            <ProgressBar
+                android:id="@+id/progressBarDetail"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+
+            <!-- Вкладки (TabLayout) -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="?attr/colorSurface"
+                app:tabMode="fixed"
+                app:tabGravity="fill"/>
+
+            <!-- ViewPager для контента вкладок -->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager_detail"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:minHeight="400dp"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

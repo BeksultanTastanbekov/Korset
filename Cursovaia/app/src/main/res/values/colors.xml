@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Акцентный цвет (основной в светлой теме) -->
+    <color name="colorPrimary">#A5B38D</color>
+    <color name="colorPrimaryVariant">#8E9E7E</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+
+    <!-- Вторичный цвет (можно использовать для фона карточек и т.д.) -->
+    <color name="colorSecondary">#DCE1C9</color>
+    <color name="colorOnSecondary">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="md_theme_error">#B00020</color> <!-- Пример цвета ошибки -->
+
+    <!-- Фон и текст -->
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorOnBackground">#000000</color>
+    <color name="colorSurface">#F5F5F5</color>
+    <color name="colorOnSurface">#212121</color>
+    <color name="grey">#ff424242</color>
+    <color name="lavender">#8692f7</color>
+
+    <color name="rating_star_color">#FFC107</color>
+    <color name="seat_occupied_text">#BDBDBD</color> <!-- Цвет текста для занятого места -->
+    <color name="radio_button_tint">#FFC107</color>
+
+</resources>

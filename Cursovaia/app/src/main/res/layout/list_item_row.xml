@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingVertical="2dp">
+
+    <!-- Номер ряда (Только слева) -->
+    <TextView
+        android:id="@+id/tv_row_label"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:minWidth="24dp"
+        android:gravity="center"
+        android:paddingHorizontal="4dp"
+        android:textSize="12sp"
+        android:textColor="?android:attr/textColorSecondary"
+        tools:text="10"/>
+
+    <!-- Горизонтальный RecyclerView для мест -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_seats_in_row"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/list_item_seat"
+        tools:itemCount="15"/>
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "815227291926",
+    "project_id": "korset1",
+    "storage_bucket": "korset1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815227291926:android:720e20f22c984e79376837",
+        "android_client_info": {
+          "package_name": "com.example.korset"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO4e_BfumF_NpEkHaOg0kS3MOaqRrcs5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

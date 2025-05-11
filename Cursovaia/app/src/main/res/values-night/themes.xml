@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Korset" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Акцентный цвет всё ещё тот же -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+
+        <!-- Нейтральные тёмные фоны -->
+        <item name="android:colorBackground">#121212</item>
+        <item name="colorSurface">#1E1E1E</item>
+        <item name="colorOnSurface">#E0E0E0</item>
+        <item name="colorOnBackground">#E0E0E0</item>
+
+        <!-- Контрастный цвет -->
+        <item name="colorSecondary">#DCE1C9</item>
+        <item name="colorOnSecondary">#000000</item>
+
+        <!-- ... другие атрибуты темы ... -->
+        <item name="colorError">@color/md_theme_error</item>
+        <!-- (Опционально) Цвет текста на фоне ошибки -->
+        <item name="colorOnError">@color/white</item>
+        <!-- ... другие атрибуты темы ... -->
+    </style>
+</resources>

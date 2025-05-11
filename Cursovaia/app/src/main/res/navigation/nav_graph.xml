@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_home">
+
+    <!-- Главный экран -->
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.korset.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <!-- Действие для перехода на экран деталей -->
+        <action
+            android:id="@+id/action_nav_home_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+
+    <!-- Афиша -->
+    <fragment
+        android:id="@+id/nav_showtimes"
+        android:name="com.example.korset.ui.showtimes.ShowtimesFragment"
+        android:label="fragment_showtimes"
+        tools:layout="@layout/fragment_showtimes" >
+        <action
+            android:id="@+id/action_nav_showtimes_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+
+    <!-- Избранное -->
+    <fragment
+        android:id="@+id/nav_favorites"
+        android:name="com.example.korset.ui.favorites.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" >
+        <!-- Action к деталям фильма (из вкладки Избранное) -->
+        <action
+            android:id="@+id/action_nav_favorites_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+        <!-- <<<=== НОВЫЙ ACTION к деталям Коллекции -->
+        <action
+            android:id="@+id/action_nav_favorites_to_collectionDetailFragment"
+            app:destination="@id/collectionDetailFragment" />
+    </fragment>
+
+    <!-- <<<=== НОВЫЙ ФРАГМЕНТ: Детали Коллекции -->
+    <fragment
+        android:id="@+id/collectionDetailFragment"
+        android:name="com.example.korset.ui.favorites.CollectionDetailFragment"
+        android:label="fragment_collection_detail"
+        tools:layout="@layout/fragment_collection_detail" >
+        <argument
+            android:name="collectionId"
+            app:argType="integer" />
+        <!-- ДОБАВЛЯЕМ ACTION К ДЕТАЛЯМ ФИЛЬМА -->
+        <action
+            android:id="@+id/action_collectionDetailFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+
+    <!-- Места (Кинотеатры) -->
+    <fragment
+        android:id="@+id/nav_cinemas"
+        android:name="com.example.korset.ui.cinemas.CinemasFragment"
+        android:label="fragment_cinemas"
+        tools:layout="@layout/fragment_cinemas" />
+
+    <!-- Профиль (или Мои Билеты) -->
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.korset.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <!-- Экран Деталей Фильма -->
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.example.korset.ui.details.MovieDetailFragment"
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail" >
+        <argument
+            android:name="movieId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <!-- ДОБАВЛЯЕМ ACTION ДЛЯ ПЕРЕХОДА К ВЫБОРУ МЕСТ -->
+        <action
+            android:id="@+id/action_movieDetailFragment_to_seatSelectionFragment"
+            app:destination="@id/seatSelectionFragment" />
+    </fragment>
+
+    <!-- ДОБАВЛЯЕМ ФРАГМЕНТ ВЫБОРА МЕСТ -->
+    <fragment
+        android:id="@+id/seatSelectionFragment"
+        android:name="com.example.korset.ui.details.SeatSelectionFragment"
+        android:label="fragment_seat_selection"
+        tools:layout="@layout/fragment_seat_selection">
+        <argument
+            android:name="sessionItem"
+            app:argType="com.example.korset.data.model.SessionItem" />
+        <!-- ДОБАВЛЯЕМ НЕДОСТАЮЩИЕ АРГУМЕНТЫ -->
+        <argument android:name="movieId" app:argType="integer" />
+        <argument android:name="movieTitle" app:argType="string" app:nullable="true"/>
+        <argument android:name="moviePosterPath" app:argType="string" app:nullable="true"/>
+        <!-- ДОБАВЛЯЕМ ACTION ДЛЯ ПЕРЕХОДА К ПОДТВЕРЖДЕНИЮ -->
+        <action
+            android:id="@+id/action_seatSelectionFragment_to_orderConfirmationFragment"
+            app:destination="@id/orderConfirmationFragment" />
+    </fragment>
+
+    <!-- ДОБАВЛЯЕМ ФРАГМЕНТ ПОДТВЕРЖДЕНИЯ ЗАКАЗА -->
+    <fragment
+        android:id="@+id/orderConfirmationFragment"
+        android:name="com.example.korset.ui.details.OrderConfirmationFragment"
+        android:label="fragment_order_confirmation"
+        tools:layout="@layout/fragment_order_confirmation">
+        <!-- Аргументы, которые нужно передать -->
+        <argument
+            android:name="session"
+            app:argType="com.example.korset.data.model.SessionItem" />
+        <argument
+            android:name="seats"
+            app:argType="com.example.korset.data.model.Seat[]" /> <!-- Массив мест -->
+        <argument
+            android:name="ticketType"
+            app:argType="com.example.korset.data.model.TicketType" />
+        <argument
+            android:name="totalPrice"
+            app:argType="integer" />
+        <argument
+            android:name="movieId"
+            app:argType="integer" /> <!-- ID фильма (чтобы показать постер) -->
+        <argument
+            android:name="movieTitle"
+            app:argType="string"
+            app:nullable="true"/> <!-- Название фильма -->
+        <argument
+            android:name="moviePosterPath"
+            app:argType="string"
+            app:nullable="true"/> <!-- Постер фильма -->
+    </fragment>
+
+    <fragment
+        android:id="@+id/myTicketsFragment"
+        android:name="com.example.korset.ui.tickets.MyTicketsFragment"
+        android:label="fragment_my_tickets"
+        tools:layout="@layout/fragment_my_tickets" >
+        <!-- ДОБАВЛЯЕМ ACTION для перехода к деталям билета -->
+        <action
+            android:id="@+id/action_myTicketsFragment_to_ticketDetailFragment"
+            app:destination="@id/ticketDetailFragment" />
+    </fragment>
+
+    <!-- ДОБАВЛЯЕМ ФРАГМЕНТ ДЕТАЛЕЙ БИЛЕТА -->
+    <fragment
+        android:id="@+id/ticketDetailFragment"
+        android:name="com.example.korset.ui.tickets.TicketDetailFragment"
+        android:label="fragment_ticket_detail"
+        tools:layout="@layout/fragment_ticket_detail">
+        <argument
+            android:name="ticketId"
+            app:argType="integer" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_to_myTicketsFragment"
+        app:destination="@id/myTicketsFragment" />
+
+
+</navigation>

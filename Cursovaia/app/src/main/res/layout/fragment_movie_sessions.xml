@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.details.MovieSessionsFragment">
+
+    <!-- Выбор даты (Горизонтальный RecyclerView) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_dates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="12dp"
+        android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/list_item_date"
+        tools:itemCount="7"/>
+
+    <!-- Фильтры (По времени / По кинотеатрам) -->
+    <!-- ЗАМЕНЯЕМ TabLayout НА MaterialButtonToggleGroup -->
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggle_button_group_filter_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:singleSelection="true"
+        app:checkedButton="@+id/button_filter_by_time">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_filter_by_time"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="По времени" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_filter_by_cinema"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="По кинотеатрам" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <!-- Фильтры (Дневные, Вечерние, Все, Форматы) - Используем ChipGroup -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_marginTop="8dp"
+        android:paddingHorizontal="12dp"
+        android:clipToPadding="false">
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_session_filters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleLine="true"
+            app:singleSelection="true"> <!-- Можно выбрать только один чип -->
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_all"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Все"
+                android:checked="true"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_day"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Дневные"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_evening"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Вечерние"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_imax"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IMAX"/>
+            <!-- Добавь другие чипы для форматов -->
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <!-- Список сеансов -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_sessions"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/list_item_session"
+        tools:itemCount="5"/>
+
+    <!-- Placeholder, если сеансов нет -->
+    <TextView
+        android:id="@+id/tv_no_sessions"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Нет доступных сеансов\nна выбранную дату/фильтры"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+</LinearLayout>

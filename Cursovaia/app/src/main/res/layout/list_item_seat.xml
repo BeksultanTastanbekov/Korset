@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Просто FrameLayout для одного места -->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/seat_container"
+    android:layout_width="27dp"
+    android:layout_height="27dp"
+    android:layout_margin="0.5dp"
+    android:background="@drawable/seat_background_available">
+
+    <TextView
+        android:id="@+id/tv_seat_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        tools:text="15" />
+</FrameLayout>

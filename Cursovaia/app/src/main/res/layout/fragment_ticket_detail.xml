@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    tools:context=".ui.tickets.TicketDetailFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_ticket_detail"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:title="Детали билета" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Верхняя часть с постером и основной инфо -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_ticket_detail_poster"
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars"
+                    android:contentDescription="@string/movie_poster_content_description"/>
+
+                <TextView
+                    android:id="@+id/tv_ticket_detail_movie_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    app:layout_constraintStart_toEndOf="@id/iv_ticket_detail_poster"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_ticket_detail_poster"
+                    tools:text="Название Фильма Очень Длинное"/>
+
+                <TextView
+                    android:id="@+id/tv_ticket_detail_cinema_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    app:layout_constraintStart_toStartOf="@id/tv_ticket_detail_movie_title"
+                    app:layout_constraintEnd_toEndOf="@id/tv_ticket_detail_movie_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_ticket_detail_movie_title"
+                    tools:text="Кинотеатр, Город, Адрес"/>
+
+                <TextView
+                    android:id="@+id/tv_ticket_detail_datetime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    app:layout_constraintStart_toStartOf="@id/tv_ticket_detail_movie_title"
+                    app:layout_constraintEnd_toEndOf="@id/tv_ticket_detail_movie_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_ticket_detail_cinema_info"
+                    tools:text="13.04.2025 • 12:15"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View style="@style/Widget.App.Divider" android:layout_marginVertical="16dp"/>
+
+            <!-- Детали билета: Места, количество, Итого -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Места" style="?attr/textAppearanceLabelSmall" android:textColor="?android:attr/textColorSecondary"/>
+            <TextView android:id="@+id/tv_ticket_detail_seats" android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="7 ряд, 21,20,19,18,17,16,15 место" style="?attr/textAppearanceBodyLarge" android:layout_marginBottom="8dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Детали" style="?attr/textAppearanceLabelSmall" android:textColor="?android:attr/textColorSecondary"/>
+            <TextView android:id="@+id/tv_ticket_detail_count_type" android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="5 Детский, 2 Студент" style="?attr/textAppearanceBodyLarge" android:layout_marginBottom="8dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Итого" style="?attr/textAppearanceLabelSmall" android:textColor="?android:attr/textColorSecondary"/>
+            <TextView android:id="@+id/tv_ticket_detail_total_price" android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="6 000 ₸" style="?attr/textAppearanceHeadlineSmall" android:textStyle="bold" android:layout_marginBottom="16dp"/>
+
+            <View style="@style/Widget.App.Divider" android:layout_marginVertical="8dp"/>
+
+            <!-- Номер заказа и QR-код (заглушка) -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Номер заказа" style="?attr/textAppearanceBodyMedium" android:layout_gravity="center_horizontal"/>
+            <TextView android:id="@+id/tv_ticket_detail_order_number" android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="654431911218" style="?attr/textAppearanceHeadlineSmall" android:textStyle="bold" android:layout_gravity="center_horizontal" android:layout_marginBottom="16dp"/>
+
+            <ImageView
+                android:id="@+id/iv_ticket_detail_qr_code"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/my_youtube_qr_code"
+                android:scaleType="fitCenter"
+                android:contentDescription="QR-код билета (пасхалка)"/>
+
+
+            <TextView android:id="@+id/tv_ticket_detail_access_code" android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="Access code EXT_654431911218" style="?attr/textAppearanceBodyMedium" android:layout_gravity="center_horizontal" android:layout_marginTop="8dp"/>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

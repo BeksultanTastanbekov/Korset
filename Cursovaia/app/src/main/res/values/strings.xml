@@ -1,0 +1,49 @@
+<resources>
+    <!-- Название приложения -->
+    <string name="app_name">Körset</string>
+
+    <!-- Заголовки навигации -->
+    <string name="nav_home_title">Главная</string>
+    <string name="nav_showtimes_title">Афиша</string>
+    <string name="nav_favorites_title">Избранное</string>
+    <string name="nav_cinemas_title">Места</string>
+    <string name="nav_profile_title">Профиль</string>
+
+    <!-- Описания фрагментов -->
+    <string name="hello_home_fragment">Главный экран</string>
+    <string name="hello_showtimes_fragment">Экран Афиши</string>
+    <string name="hello_favorites_fragment">Экран Избранного</string>
+    <string name="hello_cinemas_fragment">Экран Мест</string>
+    <string name="hello_profile_fragment">Экран Профиля</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string> <!-- Оставлено как placeholder -->
+
+    <!-- Строки для выбора города -->
+    <string name="select_city">Выберите город</string>
+    <string name="find_city">Найти город</string>
+    <string name="close_button">Закрыть</string>
+    <string name="selected_city_indicator">Выбранный город</string>
+
+    <!-- Строки для экрана деталей фильма -->
+    <string name="movie_backdrop">Фон фильма</string>
+    <string name="play_trailer">Воспроизвести трейлер</string>
+
+    <string name="movie_poster_content_description">Постер фильма</string>
+    <string name="ticket_details_content_description">Детали билета</string>
+
+    <plurals name="tickets">
+        <item quantity="one">%d билет</item> <!-- 1 билет -->
+        <item quantity="few">%d билета</item> <!-- 2, 3, 4 билета -->
+        <item quantity="many">%d билетов</item> <!-- 5, 6... билетов -->
+        <item quantity="other">%d билета</item> <!-- Для других языков/случаев -->
+    </plurals>
+
+    <plurals name="movies_count">
+        <item quantity="one">%d фильм</item>
+        <item quantity="few">%d фильма</item>
+        <item quantity="many">%d фильмов</item>
+        <item quantity="other">%d фильма</item>
+    </plurals>
+
+    <string name="city_placeholder">Город</string>
+    <string name="error_opening_my_tickets">Не удалось открыть Мои билеты</string>
+</resources>
